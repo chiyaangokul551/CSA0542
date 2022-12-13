@@ -1,0 +1,86 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 27
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database schoolperson;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use schoolperson;
+Database changed
+mysql> create table student(PersonID int,LastName varchar(255),FirstName varchar(255), Address varchar(255));
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> desc student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| PersonID  | int(11)      | YES  |     | NULL    |       |
+| LastName  | varchar(255) | YES  |     | NULL    |       |
+| FirstName | varchar(255) | YES  |     | NULL    |       |
+| Address   | varchar(255) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into student value(2,"g","a","anna nager");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into student value(1,"d","b","saidapet");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into student value(3,"r","t","t");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select*from student;
++----------+----------+-----------+------------+
+| PersonID | LastName | FirstName | Address    |
++----------+----------+-----------+------------+
+|        2 | g        | a         | anna nager |
+|        1 | d        | b         | saidapet   |
+|        3 | r        | t         | t          |
++----------+----------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE student add stu_dob int(45)
+    -> ALTER TABLE student add stu_dob int(45);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ALTER TABLE student add stu_dob int(45)' at line 2
+mysql> ALTER TABLE student add (stu_dob int(45));
+Query OK, 3 rows affected (0.49 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> create table proffesors(p_id(22),p_name varchar(5766),p_qualification varchar(234));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(22),p_name varchar(5766),p_qualification varchar(234))' at line 1
+mysql> create table proffesors(p_id int(22),p_name varchar(5766),p_qualification varchar(234));
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> desc proffesors;
++-----------------+---------------+------+-----+---------+-------+
+| Field           | Type          | Null | Key | Default | Extra |
++-----------------+---------------+------+-----+---------+-------+
+| p_id            | int(22)       | YES  |     | NULL    |       |
+| p_name          | varchar(5766) | YES  |     | NULL    |       |
+| p_qualification | varchar(234)  | YES  |     | NULL    |       |
++-----------------+---------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> drop table proffesors;
+Query OK, 0 rows affected (0.11 sec)
+
+
+mysql> show tables;
++------------------------+
+| Tables_in_schoolperson |
++------------------------+
+| student                |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql>
