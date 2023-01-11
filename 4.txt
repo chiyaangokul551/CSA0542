@@ -1,0 +1,143 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database numbername;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use numbername;
+Database changed
+mysql> create  table nametable(regno int(10),name varchar(20),lastname varchar(20)Address varchar(10),Fathername varchar(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Address varchar(10),Fathername varchar(10))' at line 1
+mysql> create  table nametable(regno int(10),name varchar(20),lastname varchar(20));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> insert into nametable value(12345,"gokul","ece","madurai");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into nametable value(6,"t","o");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into nametable value(7,"g","u");
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into nametable value(5,"b","m");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select*from nametable;
++-------+------+----------+
+| regno | name | lastname |
++-------+------+----------+
+|     6 | t    | o        |
+|     7 | g    | u        |
+|     5 | b    | m        |
++-------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select name from nametable;
++------+
+| name |
++------+
+| t    |
+| g    |
+| b    |
++------+
+3 rows in set (0.00 sec)
+
+mysql> select*from nametables where name="t";
+ERROR 1146 (42S02): Table 'numbername.nametables' doesn't exist
+mysql> select*from nametable where name="t";
++-------+------+----------+
+| regno | name | lastname |
++-------+------+----------+
+|     6 | t    | o        |
++-------+------+----------+
+1 row in set (0.02 sec)
+
+mysql> select*from nametable;
++-------+------+----------+
+| regno | name | lastname |
++-------+------+----------+
+|     6 | t    | o        |
+|     7 | g    | u        |
+|     5 | b    | m        |
++-------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> update nametables set dept="bme" where regno=1234;
+ERROR 1146 (42S02): Table 'numbername.nametables' doesn't exist
+mysql> update nametables set dept="bme" where regno=1234;
+ERROR 1146 (42S02): Table 'numbername.nametables' doesn't exist
+mysql> update nametables set lastname="u" where regno=7;
+ERROR 1146 (42S02): Table 'numbername.nametables' doesn't exist
+mysql> update nametable set lastname="u" where regno=7;
+Query OK, 0 rows affected (0.11 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select*from nametable;
++-------+------+----------+
+| regno | name | lastname |
++-------+------+----------+
+|     6 | t    | o        |
+|     7 | g    | u        |
+|     5 | b    | m        |
++-------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> update nametable name="g"where name="b";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '="g"where name="b"' at line 1
+mysql> update nametable name="g"where lastname="m";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '="g"where lastname="m"' at line 1
+mysql> update nametable name="j"where lastname="m";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '="j"where lastname="m"' at line 1
+mysql> update nametable set name="b"where lastname="m";
+Query OK, 0 rows affected (0.09 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select*from nametable;
++-------+------+----------+
+| regno | name | lastname |
++-------+------+----------+
+|     6 | t    | o        |
+|     7 | g    | u        |
+|     5 | b    | m        |
++-------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> delete from nametable where lastname="u";
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select*from nametable;
++-------+------+----------+
+| regno | name | lastname |
++-------+------+----------+
+|     6 | t    | o        |
+|     5 | b    | m        |
++-------+------+----------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
