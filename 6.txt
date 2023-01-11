@@ -1,0 +1,136 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use numbertable;
+ERROR 1049 (42000): Unknown database 'numbertable'
+mysql> use numbername;
+Database changed
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show tables;
++----------------------+
+| Tables_in_numbername |
++----------------------+
+| nametable            |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select*from nametable;
++-------+------+----------+-------+---------+
+| regno | name | lastname | Marks | subject |
++-------+------+----------+-------+---------+
+|     6 | t    | o        |    91 | NULL    |
+|     5 | b    | m        |    95 | NULL    |
++-------+------+----------+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> alter table nametable add lastname varchar(20);
+ERROR 1060 (42S21): Duplicate column name 'lastname'
+mysql> alter table nametable add gokul varchar(20);
+Query OK, 2 rows affected (0.28 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> update nametable set gokul="PDSD" where name="t";
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update nametable set gokul="DBMS" where name="t";
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update nametable set gokul="BIOEVS" where name="b";
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from nametable;
++-------+------+----------+-------+---------+--------+
+| regno | name | lastname | Marks | subject | gokul  |
++-------+------+----------+-------+---------+--------+
+|     6 | t    | o        |    91 | NULL    | DBMS   |
+|     5 | b    | m        |    95 | NULL    | BIOEVS |
++-------+------+----------+-------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select*from nametable where Marks BETWEEN 95 and 99;
++-------+------+----------+-------+---------+--------+
+| regno | name | lastname | Marks | subject | gokul  |
++-------+------+----------+-------+---------+--------+
+|     5 | b    | m        |    95 | NULL    | BIOEVS |
++-------+------+----------+-------+---------+--------+
+1 row in set (0.02 sec)
+
+mysql> elect*from mentees where subject IN('BIOEVS');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'elect*from mentees where subject IN('BIOEVS')' at line 1
+mysql> elect*from mentees where gokul IN('BIOEVS');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'elect*from mentees where gokul IN('BIOEVS')' at line 1
+mysql> select*from nametable where subject IN('BIOEVS');
+Empty set (0.00 sec)
+
+mysql> elect sum(Marks) from mentees where name="b";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'elect sum(Marks) from mentees where name="b"' at line 1
+mysql> select*from nametable where subject IN('Bffff');
+Empty set (0.00 sec)
+
+mysql> select*from nametable;
++-------+------+----------+-------+---------+--------+
+| regno | name | lastname | Marks | subject | gokul  |
++-------+------+----------+-------+---------+--------+
+|     6 |  o    | o        |    91 | NULL    | DBMS   |
+|     5 |  c    | t        |    95 | NULL    | BIOEVS |
++-------+------+----------+-------+---------+--------+
+mysql> select*from nametable where subject IN('BIOEVS');
++-----------+------+------+---------+------------+-------+---------+
+| Regno     | Name | Dept | Address | Fathername | Marks | subject |
++-----------+------+------+---------+------------+-------+---------+
+| 192011079 | arun | BME  | nellore | pandiyan       |    91 | BIOEVS  |
++-----------+------+------+---------+------------+-------+---------+
+1 row in set (0.00 sec)
+mysql> select*from nametable where Marks NOT BETWEEN 95 and 99;
++-----------+--------+------+---------+------------+-------+---------+
+| Regno     | Name   | Dept | Address | Fathername | Marks | subject |
++-----------+--------+------+---------+------------+-------+---------+
+| 192011079 | arun   | BME  | nellore | pandiyan   |    91 | BIOEVS  |
+| 192211080 | Dhivya | ECE  | Tirupur |      |        91 | PDSD    |
++-----------+--------+------+---------+------------+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select sum(Marks) from nametable where Dept="ECE";
++------------+
+| sum(Marks) |
++------------+
+|        186 |
++------------+
+1 row in set (0.01 sec)
+mysql> select avg(Marks) as Average from nametable;
++---------+
+| Average |
++---------+
+| 94.0000 |
++---------+
+1 row in set (0.00 sec)
+mysql> select min(Marks) as minimum from nametable;
++---------+
+| minimum |
++---------+
+|      91 |
++---------+
+1 row in set (0.01 sec)
+
+mysql> select max(Marks) as maximum from nametbale;
++---------+
+| maximum |
++---------+
+|      99 |
++---------+
+1 row in set (0.00 sec)
+Footer
